@@ -52,4 +52,5 @@ int				ft_atoi(const char *str);
 void			*monitoring(void *arg);
 void			*solve(void *num);
 void			ft_print(char *str, long long ms, int philo_name);
+int				error_input(int code);
 #endif

@@ -75,23 +75,21 @@ int	create_threads(void)
 	return (0);
 }
 
-int	error_input(int code)
+int	start(void)
 {
-	if (code == 1)
-		printf("Error, arguments must be 5 or 6\n");
-	else if (code == 2)
-		printf("Error, invalid arguments\n");
-	else if (code == 3)
-		printf("Error, can't malloc\n");
-	else if (code == 4)
-		printf("Error, can't create threads\n");
-	return (1);
+	int	i;
+
+	i = create_threads();
+	if (i)
+	{
+		free_data(i);
+		return (error_input(4));
+	}
+	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	int	i;
-
 	if (argc != 5 && argc != 6)
 		return (error_input(1));
 	if (!is_valid(argc, argv))
@@ -107,11 +105,10 @@ int	main(int argc, char **argv)
 	g_data->time_dea = ft_atoi(argv[2]);
 	g_data->time_eat = ft_atoi(argv[3]);
 	g_data->time_sleep = ft_atoi(argv[4]);
-	i = create_threads();
-	if (i)
+	if (g_data->must_eat == 0)
 	{
-		free_data(i);
-		return (error_input(4));
+		free(g_data);
+		return (1);
 	}
-	return (0);
+	return (start());
 }

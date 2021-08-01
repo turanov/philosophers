@@ -109,6 +109,8 @@ int	main(int argc, char **argv)
 		free(g_data);
 		return (error_input(4));
 	}
+	if (g_data->must_eat == 0)
+		exit(0);
 	create_forks(0);
-	return (0);
+	exit(0);
 }

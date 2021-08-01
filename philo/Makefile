@@ -8,7 +8,7 @@ HEADER		= philo.h
 
 RM			= rm -f
 
-SRCS		= main.c threads.c utils.c
+SRCS		= main.c threads.c utils.c print.c
 
 
 OBJS 		= ${SRCS:.c=.o}
