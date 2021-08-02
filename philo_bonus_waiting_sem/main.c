@@ -42,12 +42,15 @@ int	init_data(char **argv)
 	sem_unlink("sem_is_dead");
 	sem_unlink("sem_forks");
 	sem_unlink("sem_is_eat");
+	sem_unlink("sem_wait_all");
 	g_data->sem_print = sem_open("sem_print", O_CREAT, 0777, 1);
 	g_data->sem_is_dead = sem_open("sem_is_dead", O_CREAT, 0777, 0);
 	g_data->sem_forks = sem_open("sem_forks", O_CREAT, 0777, g_data->number);
 	g_data->sem_is_eat = sem_open("sem_is_eat", O_CREAT, 0777, 0);
+	g_data->sem_wait_all = sem_open("sem_wait_all", O_CREAT, 0777, g_data->number);
 	if (g_data->sem_forks == SEM_FAILED || g_data->sem_is_dead == SEM_FAILED
 		|| g_data->sem_print == SEM_FAILED
+		|| g_data->sem_wait_all == SEM_FAILED
 		|| g_data->sem_is_eat == SEM_FAILED)
 		return (0);
 	return (1);

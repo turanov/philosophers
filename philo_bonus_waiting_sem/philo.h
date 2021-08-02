@@ -35,6 +35,7 @@ typedef struct s_data
 	sem_t				*sem_forks;
 	sem_t				*sem_is_dead;
 	sem_t				*sem_is_eat;
+	sem_t				*sem_wait_all;
 }						t_data;
 
 t_data			*g_data;

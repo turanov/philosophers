@@ -43,7 +43,7 @@ typedef struct s_data
 }						t_data;
 
 t_data			*g_data;
-int				create_threads(void);
+int				create_threads(int i );
 long long int	g_ms(struct timeval old);
 int				ft_strlen(const char *str);
 int				is_number(char *str);

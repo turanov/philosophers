@@ -63,6 +63,8 @@ void	*solve(void *num)
 	int			cur;
 	pthread_t	thread;
 
+	sem_wait(g_data->sem_wait_all);
+	gettimeofday(&g_data->start_eat,NULL);
 	cur = *(int *)num;
 	if (pthread_create(&thread, NULL, monitoring, num) != 0)
 		return (NULL);
@@ -106,6 +108,9 @@ int	create_forks(int i, int id)
 	}
 	if (pthread_create(&thread, NULL, monitor_for_eat, NULL) != 0)
 		return (1);
+	i = 0;
+	while (i++ < g_data->number)
+		sem_post(g_data->sem_wait_all);
 	sem_wait(g_data->sem_is_dead);
 	return (kill(0, SIGKILL));
 }

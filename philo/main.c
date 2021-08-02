@@ -47,12 +47,10 @@ int	init_data(char **argv)
 	return (1);
 }
 
-int	create_threads(void)
+int	create_threads(int i)
 {
-	int			i;
 	pthread_t	monitor;
 
-	i = 0;
 	while (i < g_data->number)
 	{
 		gettimeofday(&g_data->start_eat, NULL);
@@ -70,7 +68,10 @@ int	create_threads(void)
 		return (i);
 	}
 	if (g_data->is_dead)
+	{
+		pthread_mutex_lock(&g_data->print);
 		printf("%lldms %d is dead\n", g_data->time_dead, g_data->is_dead);
+	}
 	free_data(g_data->number);
 	return (0);
 }
@@ -79,7 +80,7 @@ int	start(void)
 {
 	int	i;
 
-	i = create_threads();
+	i = create_threads(0);
 	if (i)
 	{
 		free_data(i);

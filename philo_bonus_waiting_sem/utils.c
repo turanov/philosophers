@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sshaina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/01 13:11:22 by sshaina           #+#    #+#             */
-/*   Updated: 2021/08/01 13:11:24 by sshaina          ###   ########.fr       */
+/*   Created: 2021/08/01 13:12:58 by sshaina           #+#    #+#             */
+/*   Updated: 2021/08/01 13:12:59 by sshaina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,11 @@ int	ft_atoi(const char *str)
 		str++;
 	}
 	return (ans);
+}
+
+void	ft_print(char *str, long long ms, int philo_name)
+{
+	sem_wait(g_data->sem_print);
+	printf("%lldms %d %s\n", ms, philo_name, str);
+	sem_post(g_data->sem_print);
 }

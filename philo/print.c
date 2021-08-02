@@ -24,3 +24,10 @@ int	error_input(int code)
 		printf("Error, can't create threads\n");
 	return (1);
 }
+
+void	ft_print(char *str, long long ms, int philo_name)
+{
+	pthread_mutex_lock(&g_data->print);
+	printf("%lldms %d %s\n", ms, philo_name, str);
+	pthread_mutex_unlock(&g_data->print);
+}
